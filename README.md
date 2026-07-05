@@ -1,6 +1,14 @@
 # JQF + Zest: Semantic Fuzzing for Java
 [![Build](https://github.com/vlsi/jqf/actions/workflows/ci.yml/badge.svg)](https://github.com/vlsi/jqf/actions/workflows/ci.yml)
 
+> ### About this fork
+>
+> This is a maintained fork of [rohanpadhye/JQF](https://github.com/rohanpadhye/JQF). The upstream maintainer plans to archive the original project this year ([#278 comment](https://github.com/rohanpadhye/JQF/pull/278#issuecomment-4854703439)), so this fork carries the work forward.
+>
+> The driving goal is to decouple the fuzzing engine from JUnit 4 ([#80](https://github.com/rohanpadhye/JQF/issues/80)) so JQF can run under JUnit 5 and be embedded in projects that do not use JUnit 4. The engine now depends on neither JUnit version, gains a JUnit 5 `@FuzzTest` adapter, and takes argument generators through a pluggable provider SPI. See [#278](https://github.com/rohanpadhye/JQF/pull/278) and [#280](https://github.com/rohanpadhye/JQF/pull/280) for the changes.
+>
+> Artifacts are published under the `io.github.vlsi.jqf` group id, independently of upstream.
+
 [ISSTA'19 paper]: https://rohan.padhye.org/files/zest-issta19.pdf
 [ISSTA'18 paper]: https://rohan.padhye.org/files/perffuzz-issta18.pdf
 [ISSTA'19 tool paper]: https://rohan.padhye.org/files/jqf-issta19.pdf
