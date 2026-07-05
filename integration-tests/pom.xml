@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>jqf</artifactId>
-        <groupId>edu.berkeley.cs.jqf</groupId>
+        <groupId>io.github.vlsi.jqf</groupId>
         <version>2.2-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -16,7 +16,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>edu.berkeley.cs.jqf</groupId>
+            <groupId>io.github.vlsi.jqf</groupId>
             <artifactId>jqf-fuzz</artifactId>
             <scope>test</scope>
         </dependency>
@@ -25,7 +25,7 @@
              junit-jupiter-api but no Jupiter engine, so failsafe keeps running the
              JUnit 4 integration tests. -->
         <dependency>
-            <groupId>edu.berkeley.cs.jqf</groupId>
+            <groupId>io.github.vlsi.jqf</groupId>
             <artifactId>jqf-junit5</artifactId>
             <scope>test</scope>
         </dependency>

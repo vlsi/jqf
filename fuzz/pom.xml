@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>edu.berkeley.cs.jqf</groupId>
+        <groupId>io.github.vlsi.jqf</groupId>
         <artifactId>jqf</artifactId>
         <version>2.2-SNAPSHOT</version>
     </parent>
@@ -15,7 +15,7 @@
     <packaging>jar</packaging>
 
     <!--
-      This module keeps the edu.berkeley.cs.jqf:jqf-fuzz coordinates for backwards compatibility.
+      This module keeps the io.github.vlsi.jqf:jqf-fuzz coordinates for backwards compatibility.
       It carries no sources of its own; it re-exports the engine and the JUnit 4 / junit-quickcheck
       adapters so existing users still get JQF, @Fuzz, ZestGuidance, GuidedFuzzing, and the rest
       through a single dependency. The zest-cli assembly is built here because it needs every module
@@ -23,15 +23,15 @@
     -->
     <dependencies>
         <dependency>
-            <groupId>edu.berkeley.cs.jqf</groupId>
+            <groupId>io.github.vlsi.jqf</groupId>
             <artifactId>jqf-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>edu.berkeley.cs.jqf</groupId>
+            <groupId>io.github.vlsi.jqf</groupId>
             <artifactId>jqf-generator-quickcheck</artifactId>
         </dependency>
         <dependency>
-            <groupId>edu.berkeley.cs.jqf</groupId>
+            <groupId>io.github.vlsi.jqf</groupId>
             <artifactId>jqf-junit4</artifactId>
         </dependency>
     </dependencies>
@@ -85,7 +85,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>edu.berkeley.cs.jqf.fuzz.ei.ZestCLI</mainClass>
+                                    <mainClass>io.github.vlsi.jqf.fuzz.ei.ZestCLI</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>edu.berkeley.cs.jqf</groupId>
+    <groupId>io.github.vlsi.jqf</groupId>
     <artifactId>jqf</artifactId>
     <version>2.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>jqf</name>
     <description>JQF: Feedback-directed Quickcheck for Java</description>
-    <url>https://github.com/rohanpadhye/jqf</url>
+    <url>https://github.com/vlsi/jqf</url>
     <licenses>
         <license>
             <name>BSD-2-Clause</name>
@@ -29,6 +29,11 @@
             <email>clemieux@cs.ubc.ca</email>
             <organization>University of British Columbia</organization>
             <url>http://www.carolemieux.com</url>
+        </developer>
+        <developer>
+            <name>Vladimir Sitnikov</name>
+            <email>sitnikov.vladimir@gmail.com</email>
+            <url>https://github.com/vlsi</url>
         </developer>
     </developers>
 
@@ -74,14 +79,15 @@
     </contributors>
 
     <scm>
-        <connection>scm:git:git@github.com:rohanpadhye/jqf.git</connection>
-        <url>https://github.com/rohanpadhye/jqf</url>
+        <connection>scm:git:https://github.com/vlsi/jqf.git</connection>
+        <developerConnection>scm:git:git@github.com:vlsi/jqf.git</developerConnection>
+        <url>https://github.com/vlsi/jqf</url>
       <tag>HEAD</tag>
   </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/rohanpadhye/jqf/issues</url>
+        <url>https://github.com/vlsi/jqf/issues</url>
     </issueManagement>
 
     <properties>
@@ -169,47 +175,47 @@
                 <version>0.8.10</version>
             </dependency>
             <dependency>
-                <groupId>edu.berkeley.cs.jqf</groupId>
+                <groupId>io.github.vlsi.jqf</groupId>
                 <artifactId>jqf-core</artifactId>
                 <version>2.2-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>edu.berkeley.cs.jqf</groupId>
+                <groupId>io.github.vlsi.jqf</groupId>
                 <artifactId>jqf-generator-quickcheck</artifactId>
                 <version>2.2-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>edu.berkeley.cs.jqf</groupId>
+                <groupId>io.github.vlsi.jqf</groupId>
                 <artifactId>jqf-generator-instancio</artifactId>
                 <version>2.2-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>edu.berkeley.cs.jqf</groupId>
+                <groupId>io.github.vlsi.jqf</groupId>
                 <artifactId>jqf-generator-jetcheck</artifactId>
                 <version>2.2-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>edu.berkeley.cs.jqf</groupId>
+                <groupId>io.github.vlsi.jqf</groupId>
                 <artifactId>jqf-junit4</artifactId>
                 <version>2.2-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>edu.berkeley.cs.jqf</groupId>
+                <groupId>io.github.vlsi.jqf</groupId>
                 <artifactId>jqf-junit5</artifactId>
                 <version>2.2-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>edu.berkeley.cs.jqf</groupId>
+                <groupId>io.github.vlsi.jqf</groupId>
                 <artifactId>jqf-fuzz</artifactId>
                 <version>2.2-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>edu.berkeley.cs.jqf</groupId>
+                <groupId>io.github.vlsi.jqf</groupId>
                 <artifactId>jqf-instrument</artifactId>
                 <version>2.2-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>edu.berkeley.cs.jqf</groupId>
+                <groupId>io.github.vlsi.jqf</groupId>
                 <artifactId>jqf-examples</artifactId>
                 <version>2.2-SNAPSHOT</version>
             </dependency>
@@ -307,7 +313,7 @@
                     <version>3.15.1</version>
                 </plugin>
                 <plugin>
-                    <groupId>edu.berkeley.cs.jqf</groupId>
+                    <groupId>io.github.vlsi.jqf</groupId>
                     <artifactId>jqf-maven-plugin</artifactId>
                     <version>2.2-SNAPSHOT</version>
                 </plugin>
