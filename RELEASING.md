@@ -18,10 +18,11 @@ Configure these under **Settings → Secrets and variables → Actions**:
 - `CENTRAL_PORTAL_USERNAME`, `CENTRAL_PORTAL_PASSWORD` — a user token from [central.sonatype.com](https://central.sonatype.com) (Account → Generate User Token). The `io.github.vlsi` namespace must already be verified for the account.
 - `RELEASE_PGP_PRIVATE_KEY` — the ASCII-armored signing key.
 - `RELEASE_PGP_PASSPHRASE` — the passphrase for that key.
+- `RELEASE_PGP_SECRET_UPDATE_TOKEN` — a token the PGP Key Maintenance workflow uses to write the refreshed key back into `RELEASE_PGP_PRIVATE_KEY`. Needed only for key maintenance, not for a release.
 
 ## Signing key
 
-The signing key lives only in the secrets above; no key material is checked into the repository. To provision or rotate it, run the [`vlsi/provision-release-pgp-key`](https://github.com/vlsi/provision-release-pgp-key) reusable workflow, which generates a signing subkey, publishes it to the keyservers, and updates `RELEASE_PGP_PRIVATE_KEY` in place. The pattern follows [pgjdbc's `pgp-key-maintenance.yaml`](https://github.com/pgjdbc/pgjdbc/blob/master/.github/workflows/pgp-key-maintenance.yaml).
+The signing key lives only in the secrets above; no key material is checked into the repository. The [PGP Key Maintenance](.github/workflows/pgp-key-maintenance.yml) workflow (**Actions → PGP Key Maintenance → Run workflow**) provisions the key, extends the signing subkey before it expires, publishes it to the keyservers, and updates `RELEASE_PGP_PRIVATE_KEY` in place. It wraps the [`vlsi/provision-release-pgp-key`](https://github.com/vlsi/provision-release-pgp-key) reusable workflow; run it whenever the subkey is close to expiry.
 
 # Every release
 

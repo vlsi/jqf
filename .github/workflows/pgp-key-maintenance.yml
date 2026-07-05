@@ -1,0 +1,22 @@
+name: PGP Key Maintenance
+
+# Extends the release signing subkey before it expires and republishes it to the
+# keyservers, then writes the refreshed key back into RELEASE_PGP_PRIVATE_KEY.
+# Run it manually from the GitHub UI whenever the subkey is close to expiry.
+on:
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  pgp-key-maintenance:
+    name: PGP key maintenance
+    uses: vlsi/provision-release-pgp-key/.github/workflows/pgp-key-maintenance.yaml@7c6e3c4eb82ecdd18d1959f3f1a41af9ea0aac0e # v1.0.0
+    secrets:
+      RELEASE_PGP_SECRET_UPDATE_TOKEN: ${{ secrets.RELEASE_PGP_SECRET_UPDATE_TOKEN }}
+      RELEASE_PGP_PRIVATE_KEY: ${{ secrets.RELEASE_PGP_PRIVATE_KEY }}
+      RELEASE_PGP_PASSPHRASE: ${{ secrets.RELEASE_PGP_PASSPHRASE }}
+    with:
+      key-name: JQF releases
+      key-email: sitnikov.vladimir@gmail.com
+      key-lifetime: 1825
