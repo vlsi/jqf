@@ -326,31 +326,56 @@
                     </checkModificationExcludes>
                 </configuration>
             </plugin>
+            <!-- Publishes the reactor to the Sonatype Central Portal (oss.sonatype.org / OSSRH
+                 was retired in 2025). extensions=true makes this the deploy backend, so it only
+                 acts during the `deploy` phase, which the release workflow runs under -Prelease.
+                 waitUntil=validated fails the build fast on a broken bundle but does not block on
+                 the (potentially hours-long) final publish, which autoPublish drives afterwards. -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.8.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                    <waitUntil>validated</waitUntil>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <name>OSSRH Snapshots Repository</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <name>OSSRH Releases Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-        <downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
-    </distributionManagement>
-
     <profiles>
+        <!-- Everything needed to release to Maven Central: source and Javadoc jars (required by
+             Central) plus detached GPG signatures. The release workflow activates it with -Prelease. -->
         <profile>
-            <id>release-profile</id>
-            <modules>
-                <module>integration-tests</module>
-            </modules>
+            <id>release</id>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
@@ -361,6 +386,14 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <configuration>
+                                    <!-- gpg 2.x in CI has no interactive pinentry; take the
+                                         passphrase from the MAVEN_GPG_PASSPHRASE env var. -->
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
