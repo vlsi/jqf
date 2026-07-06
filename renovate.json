@@ -1,0 +1,45 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices"
+  ],
+  "minimumReleaseAge": "7 days",
+  "automerge": true,
+  "platformAutomerge": true,
+  "labels": [
+    "dependencies"
+  ],
+  "schedule": [
+    "every 3 weeks on Monday"
+  ],
+  "vulnerabilityAlerts": {
+    "description": "Security updates bypass the packageRules grouping below (Renovate resets their groupName), so apply the same groupId grouping to them here.",
+    "groupName": "{{{replace ':.*' '' depName}}} security",
+    "enabled": true,
+    "minimumReleaseAge": null,
+    "schedule": ["at any time"],
+    "prCreation": "immediate"
+  },
+  "packageRules": [
+    {
+      "description": "Group every Maven update by its groupId by default. The more specific rules below run later and override this where a group must span several groupIds, pin a version, or stay disabled.",
+      "matchDatasources": [
+        "maven"
+      ],
+      "groupName": "{{{replace ':.*' '' depName}}}"
+    },
+    {
+      "description": ["Group all actions/* GitHub Actions into a single PR"],
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["actions/**"],
+      "groupName": "actions org"
+    },
+    {
+      "groupName": "junit-bom",
+      "matchPackageNames": [
+        "org.junit:junit-bom"
+      ],
+      "allowedVersions": "<6.0.0"
+    }
+  ]
+}
